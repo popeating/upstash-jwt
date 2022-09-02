@@ -1,17 +1,18 @@
+import jsonwebtoken from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
+
 export const config = {
   runtime: 'experimental-edge',
 };
 
 export default async (req, res) => {
-  console.log(req.method);
-  await runMiddleware(req, res);
-  const { searchParams } = new URL(req.url);
-  const email = searchParams.get('email');
-  console.log(email, process.env.SECRET_TOKEN);
+  console.log(req.method, req.body, jsonwebtoken);
+  //await doLogin(req, res);
+
   return new Response('Hello world!');
 };
 
-function runMiddleware(req, res) {
+function doLogin(req, res) {
   console.log('runMiddleware');
   return new Promise((resolve, reject) => {
     setTimeout(() => {

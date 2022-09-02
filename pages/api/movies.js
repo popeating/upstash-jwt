@@ -1,13 +1,14 @@
-import { Redis } from '@upstash/redis';
+import { Redis } from '@upstash/redis/with-fetch';
+
 const redis = new Redis({
   url: process.env.UPSTASH_REDIS_REST_URL,
-  token: process.env.UPSTASH_REDIS_REST_TOKEN,
+  token: process.env.UPSTASH_REDIS_RO_REST_TOKEN,
 });
 export default async (req, res) => {
-  console.log(req.method);
+  console.log('boh', req.method, redis);
   //await runMiddleware(req, res);
   try {
-    const result = await redis.scan(0);
+    const result = await redis.scan(0, { match: 'movie:*' });
     console.log(result);
   } catch (error) {
     console.log(error);
