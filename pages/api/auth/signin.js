@@ -1,12 +1,7 @@
 import jsonwebtoken from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
-
-export const config = {
-  runtime: 'experimental-edge',
-};
 
 export default async (req, res) => {
-  console.log(req.method, req.body, jsonwebtoken);
+  console.log(req.method, jsonwebtoken);
   //await doLogin(req, res);
 
   return new Response('Hello world!');
@@ -20,3 +15,6 @@ function doLogin(req, res) {
     }, 1000);
   });
 }
+export const config = {
+  runtime: 'experimental-edge',
+};
